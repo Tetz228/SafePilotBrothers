@@ -40,10 +40,10 @@ namespace SafePilotBrothers.Utilities
         private static int GetSizeField()
         {
             var pathSettings = Directory.GetCurrentDirectory() + @"\Settings\" + "Settings.json";
-            using var settingJson = new FileStream(pathSettings, FileMode.Open);
-            var settings = JsonSerializer.Deserialize<Field>(settingJson);
-            
-            return int.Parse(settings.Size);
+            using var settingsJson = new FileStream(pathSettings, FileMode.Open);
+            var field = JsonSerializer.Deserialize<Field>(settingsJson);
+
+            return int.TryParse(field.Size, out int result) ? result : 4;
         }
     }
 }

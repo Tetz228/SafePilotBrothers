@@ -1,4 +1,5 @@
-﻿using SafePilotBrothers.Model;
+﻿using Gu.Wpf.DataGrid2D;
+using SafePilotBrothers.Model;
 
 namespace SafePilotBrothers.Services.Interfaces
 {
@@ -10,17 +11,16 @@ namespace SafePilotBrothers.Services.Interfaces
         /// <summary>
         ///     Повернуть рукоятки.
         /// </summary>
-        /// <param name="indexColumn">Индекс изменяемого столбца.</param>
-        /// <param name="indexLine">Индекс изменяемой строки.</param>
         /// <param name="sticks">Рукоятки.</param>
+        /// <param name="indexStick">Индексы измененной рукоятки.</param>
         /// <returns>Повернутые рукоятки.</returns>
-        public Stick[,] TurnSticks(int indexColumn, int indexLine, Stick[,] sticks);
+        public Stick[,] TurnSticks(Stick[,] sticks, RowColumnIndex indexStick);
 
         /// <summary>
         ///     Проверка всех рукояток на совпадения положения.
         /// </summary>
         /// <param name="sticks">Рукоятки.</param>
-        /// <returns>Результат о положении рукояток.</returns>
+        /// <returns>Результат на совпадения положения рукояток.</returns>
         public bool IsCheckSticks(Stick[,] sticks);
     }
 }

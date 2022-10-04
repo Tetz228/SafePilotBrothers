@@ -1,4 +1,5 @@
-﻿using SafePilotBrothers.Model;
+﻿using Gu.Wpf.DataGrid2D;
+using SafePilotBrothers.Model;
 using SafePilotBrothers.Services.Interfaces;
 
 namespace SafePilotBrothers.Services
@@ -9,21 +10,23 @@ namespace SafePilotBrothers.Services
     public class MainService : IMainService
     {
         /// <inheritdoc />
-        public Stick[,] TurnSticks(int indexColumn, int indexLine, Stick[,] sticks)
+        public Stick[,] TurnSticks(Stick[,] sticks, RowColumnIndex indexStick)
         {
-            for (int i = 0; i < sticks.Length; i++)
+            var newSticks = (Stick[,])sticks.Clone();
+                
+            for (int i = 0; i < newSticks.GetLength(0); i++)
             {
-                sticks[indexLine, i].Position = sticks[indexLine, i].Position == Position.Horizontal ? Position.Vertical : Position.Horizontal;
-
-                if (sticks[i, indexColumn] == sticks[indexLine, indexColumn])
+                newSticks[indexStick.Column, i].Position = newSticks[indexStick.Column, i].Position == Position.Horizontal ? Position.Vertical : Position.Horizontal;
+                
+                if (newSticks[i, indexStick.Row] == newSticks[indexStick.Column, indexStick.Row])
                 {
                     continue;
                 }
-
-                sticks[i, indexColumn].Position = sticks[i, indexColumn].Position == Position.Horizontal ? Position.Vertical : Position.Horizontal;
+                    
+                newSticks[i, indexStick.Row].Position = newSticks[i, indexStick.Row].Position == Position.Horizontal ? Position.Vertical : Position.Horizontal;
             }
 
-            return sticks;
+            return newSticks;
         }
 
         /// <inheritdoc />
@@ -47,7 +50,7 @@ namespace SafePilotBrothers.Services
                 }
             }
 
-            return countHorizontal == sticks.Length || countHorizontal == sticks.Length;
+            return countHorizontal == sticks.Length || countVertical == sticks.Length;
         }
     }
 }
