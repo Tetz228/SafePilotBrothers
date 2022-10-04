@@ -141,19 +141,31 @@ namespace SafePilotBrothers.ViewModel
         /// <summary>
         ///     Команда открытия окна настроек.
         /// </summary>
-        public ICommand OpenSettingsWindow => new DelegateCommand(() =>
+        public ICommand OpenSettingsWindow
         {
-            var settingsWindow = new SettingsWindow();
-            settingsWindow.ShowDialog();
-        },true);
-        
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    var settingsWindow = new SettingsWindow();
+                    settingsWindow.ShowDialog();
+                }, true);
+            }
+        }
+
         /// <summary>
         ///     Команда открытия окна победы.
         /// </summary>
-        private ICommand OpenVictoryWindow => new DelegateCommand(() =>
+        private ICommand OpenVictoryWindow
         {
-            var victoryWindow = new VictoryWindow();
-            victoryWindow.ShowDialog();
-        },true);
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    var victoryWindow = new VictoryWindow();
+                    victoryWindow.ShowDialog();
+                }, true);
+            }
+        }
     }
 }

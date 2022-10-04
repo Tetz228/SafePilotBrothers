@@ -6,7 +6,7 @@ using SafePilotBrothers.Model;
 namespace SafePilotBrothers.Converters
 {
     /// <summary>
-    ///     Класс конвертирования позиций в символы.
+    ///     Класс конвертирования рукояток в символы.
     /// </summary>
     public class ConverterPositionsToSymbols: IValueConverter
     {

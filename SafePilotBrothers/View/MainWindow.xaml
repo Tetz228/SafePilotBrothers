@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:SafePilotBrothers.ViewModel"
+        xmlns:viewModel="clr-namespace:SafePilotBrothers.ViewModel"
         xmlns:dataGrid2D="http://gu.se/DataGrid2D"
         xmlns:convertersPositions="clr-namespace:SafePilotBrothers.Converters"
         mc:Ignorable="d"
@@ -13,7 +13,7 @@
         Width="800">
     
    <Window.DataContext>
-       <vm:MainViewModel/>
+       <viewModel:MainViewModel/>
    </Window.DataContext>
     
     <Window.Resources>
@@ -32,7 +32,7 @@
             <Button Command="{Binding OpenSettingsWindow}" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center" 
-                    Content="Изменить размер поля."/>
+                    Content="Изменить размер поля"/>
         </ToolBar>
         
         <DataGrid 
