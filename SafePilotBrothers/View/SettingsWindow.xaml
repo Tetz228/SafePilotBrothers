@@ -1,0 +1,73 @@
+﻿<Window x:Class="SafePilotBrothers.View.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:SafePilotBrothers.View"
+        x:Name="SettingWindow"
+        xmlns:viewModel="clr-namespace:SafePilotBrothers.ViewModel"
+        mc:Ignorable="d"
+        Title="Настройки приложения" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Height="160" Width="300">
+    
+    <Window.DataContext>
+        <viewModel:SettingsViewModel/>
+    </Window.DataContext>
+    
+    
+    
+    <Grid>
+        <Label Content="Введите размер игрового поля:"
+               FontFamily="Verdana"
+               FontSize="15"
+               Margin="0,10,0,0" 
+               HorizontalAlignment="Center"  
+               VerticalAlignment="Top"/>
+        
+        <TextBox Text="{Binding NewSizeField, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                 ToolTip="{Binding Errors[NewSize], UpdateSourceTrigger=PropertyChanged}"
+                 FontFamily="Verdana"
+                 FontSize="15"
+                 MaxLength="2"
+                 Height="25"
+                 Width="50"
+                 TextAlignment="Center"
+                 HorizontalAlignment="Center"  
+                 VerticalAlignment="Center"/>
+        
+        <Button Content="OK"
+                FontFamily="Verdana"
+                FontSize="14"
+                Command="{Binding Ok}"
+                CommandParameter="{Binding ElementName=SettingWindow}"
+                Margin="35, 0,0,10" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Bottom"
+                IsEnabled="{Binding IsCommandValid}"
+                Height="25" 
+                Width="100">
+            
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#FFAEAEAE" />
+                        </Trigger>
+                </Style.Triggers>
+                </Style>
+                </Button.Style>
+            
+        </Button>
+        
+        <Button Content="Отмена"
+                FontFamily="Verdana"
+                FontSize="14"
+                IsCancel="True"
+                Command="{Binding Cancel}"
+                CommandParameter="{Binding ElementName=SettingWindow}"
+                Margin="0, 0,35,10" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom"
+                Height="25" 
+                Width="100"/>
+    </Grid>
+</Window>
